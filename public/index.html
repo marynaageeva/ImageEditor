@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Editor</title>
+    <script defer src="build.js"></script>
+</head>
+<body>
+<header class="main-header">
+    <div class="header-top">
+        <nav class="container clearfix">
+            <div class="left">
+                <h1 class="logo">Image Editor</h1>
+            </div>
+            <div class="right">
+                <ul class="edit-menu">
+                    <li class="edit-menu__item">Line</li>
+                    <li class="edit-menu__item">Size</li>
+                    <li class="edit-menu__item">Filter</li>
+                    <li class="edit-menu__item active">Load</li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="header-bottom">
+        <div class="container">
+            <ul class="edit-submenu">
+                <li class="edit-submenu__item">
+                    <div class="image-adjust">
+                        <label for="lineWidth">Set width</label>
+                        <input type="range" min="-" max="15" value="0" id="lineWidth">
+                    </div>
+                    <div class="image-adjust">
+                        <label for="lineColor">Set color</label>
+                        <input type="color" value="#000000" id="lineColor">
+                    </div>
+                </li>
+                <li class="edit-submenu__item">
+                    <div class="image-adjust">
+                        <label for="imgWidth">Set width</label>
+                        <input type="range" min="50" max="600" value="500" id="imgWidth">
+                    </div>
+                    <div class="image-adjust">
+                        <label for="imgHeight">Set height</label>
+                        <input type="range" min="50" max="600" id="imgHeight">
+                    </div>
+                </li>
+                <li class="edit-submenu__item">
+                    <button class="gs-filter">Grayscale</button>
+                    <button class="invert-filter">Invert</button>
+                </li>
+                <li class="edit-submenu__item open">
+                    <form name="loadImage" enctype="multipart/form-data" method="post">
+                        <label for="action-image">Load image</label>
+                        <input type="file" id="action-image" name="actionImage" autocomplete="off"
+                               placeholder="Load your image file please">
+                    </form><!--End Upload image form -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<hr/>
+<!-- Canvas place -->
+<section class="canvas-place">
+    <canvas class="canvas">Refresh browser</canvas>
+    <div class="action-buttons">
+        <button class="undo-btn">Undo</button>
+        <button class="redo-btn">Redo</button>
+    </div>
+</section><!-- end Canvas place -->
+</body>
+</html>
