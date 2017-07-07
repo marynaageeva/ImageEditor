@@ -1,4 +1,5 @@
 import './style.css';
+import './loader.css';
 import {GraphicWorker} from './GraphicWorker';
 import {MenuWorker} from './MenuWorker';
 
@@ -11,23 +12,40 @@ let fileInput = document.querySelector('[name="actionImage"]');
 let menu = new MenuWorker(subMenuContainer);
 
 fileInput.addEventListener('change', loadImage);
-menuContainer.addEventListener('click', openMenuItem);
 
+
+let isMenuActive = false;
 function loadImage(e) {
+    let actionButtons = document.querySelector('.action-buttons');
+    let file = e.target.files[0];
     graphic = new GraphicWorker(canvas);
-    if (e.target.files[0]) {
+    console.log(file.name);
+    if (file && correctFileExtention(file)) {
+        let loader = document.querySelector('.loader');
+        loader.hidden = false;
+        actionButtons.hidden = false;
+        menuContainer.addEventListener('click', openMenuItem);
         let reader = new FileReader();
         reader.onload = function (event) {
             let img = new Image();
             img.onload = function () {
                 graphic.create(img);
+                let loader = document.querySelector('.loader').hidden = true;
             };
             img.src = event.target.result;
         };
-        reader.readAsDataURL(e.target.files[0]);
+        reader.readAsDataURL(file);
     } else {
+        actionButtons.hidden = true;
+        menuContainer.removeEventListener('click', openMenuItem);
         graphic.clearCanvas();
     }
+}
+
+function correctFileExtention(file) {
+    let segments = file.name.split('.');
+    let extention = segments[segments.length - 1];
+    return extention === 'png' || extention === 'jpg';
 }
 
 function openMenuItem(e) {

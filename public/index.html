@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <title>Image Editor</title>
     <script defer src="build.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <header class="main-header">
-    <div class="header-top">
-        <nav class="container clearfix">
+    <div class="container clearfix">
+        <div class="main-header__category left clearfix">
             <div class="left">
                 <h1 class="logo">Image Editor</h1>
             </div>
-            <div class="right">
+            <div class="left">
                 <ul class="edit-menu">
                     <li class="edit-menu__item">Line</li>
                     <li class="edit-menu__item">Size</li>
@@ -20,10 +21,8 @@
                     <li class="edit-menu__item active">Load</li>
                 </ul>
             </div>
-        </nav>
-    </div>
-    <div class="header-bottom">
-        <div class="container">
+        </div>
+        <div class="main-header__adjust right">
             <ul class="edit-submenu">
                 <li class="edit-submenu__item">
                     <div class="image-adjust">
@@ -46,12 +45,12 @@
                     </div>
                 </li>
                 <li class="edit-submenu__item">
-                    <button class="gs-filter">Grayscale</button>
-                    <button class="invert-filter">Invert</button>
+                    <button class="filter-btn gs-filter">Grayscale</button>
+                    <button class="filter-btn invert-filter">Invert</button>
                 </li>
                 <li class="edit-submenu__item open">
                     <form name="loadImage" enctype="multipart/form-data" method="post">
-                        <label for="action-image">Load image</label>
+                        <label for="action-image">Image with 'png' or 'jpg' extention</label>
                         <input type="file" id="action-image" name="actionImage" autocomplete="off"
                                placeholder="Load your image file please">
                     </form><!--End Upload image form -->
@@ -60,14 +59,17 @@
         </div>
     </div>
 </header>
-<hr/>
+
+<div class="divider">
+    <div class="action-buttons" hidden>
+        <button class="undo-btn" title="undo"><i class="fa fa-undo" aria-hidden="true"></i></button>
+        <button class="redo-btn" title="redo"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+    </div>
+</div>
 <!-- Canvas place -->
 <section class="canvas-place">
-    <canvas class="canvas">Refresh browser</canvas>
-    <div class="action-buttons">
-        <button class="undo-btn">Undo</button>
-        <button class="redo-btn">Redo</button>
-    </div>
+    <div class="loader" hidden></div>
+    <canvas class="canvas" width="100%">Refresh browser</canvas>
 </section><!-- end Canvas place -->
 </body>
 </html>
